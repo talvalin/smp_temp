@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<link href="/static/eiga/css/smp.css" media="screen" rel="stylesheet" type="text/css">
+<head>
+    <title>Share My Popcorn - {% block title %}{% endblock %}</title>
+</head>
+<body>
+    <table class="outer" cellPadding="0" cellSpacing="0" align="center">
+        <tr>
+            <td>
+                <img src="/static/eiga/img/site/Logo-SMP.gif" />
+            </td>
+            <td>
+                {% block blurb %}
+                <p>Welcome to Share My Popcorn, a movie magazine dedicated to the biggest movies showing at your cinema or anticipated in the near future. Some like cultural movies, some like indie flicks, but we all enjoy good popcorn movies and here we celebrate the big budget, big stars and fun entertainment.</p>
+                {% endblock %}
+                <p>{% now "d M Y" %}</p>
+            </td>
+        </tr>
+        {% block banner %}
+        {% endblock %}
+        <tr>
+            <!--<td><h3><a href="/home/">Home</a> <a href="/news/">News</a> <a href="/reviews/">Reviews</a> <a href="/interviews/">Interviews</a> <a href="/competitions/">Competitions</a> <a href="/about/">About SMP</a> <a href="/about/team">The Team</a> <a href="/about/contact">Contact Us</a></h3></td>-->
+            <!--<td colspan="2"><h3><a href="/home/">Home</a> <a href="/reviews/">Reviews</a> <a href="/about/">About SMP</a> <a href="/about/team">The Team</a> <a href="/about/contact">Contact Us</a></h3></td>-->
+            <td colspan="2"><h3><a href="/eiga/home/">Home</a> <a href="/eiga/incinemas/">In Cinemas</a> <a href="/eiga/comingsoon/">Coming Soon</a> <a href="/eiga/outtobuy/">Out To Buy</a> <a href="/eiga/reviewarchive/">Reviews Archive</a> <a href="/about/">About SMP</a> <a href="/about/team">The Team</a> <a href="/about/contact">Contact Us</a></h3></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                {% block content %}{% endblock %}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Design, Programming and Server Stuff by <a href="http://about.me/LalithVipulananthan">Lalith Vipulananthan</a>
+            </td>
+        </tr>
+</body>
+</html>

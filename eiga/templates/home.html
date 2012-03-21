@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block banner %}
+<tr>
+    <td colspan="2">
+        <img src="/static/eiga/img/site/Feature.gif" alt="Banner ad" />
+    </td>
+</tr>
+{% endblock %}
+
+{% block content %}
+
+    {% if article_list %}
+        <div id="preview">
+            <div class="titlebox">In Cinemas</div>
+                {% for article in article_list %}
+                    {% if forloop.counter < 5 %}
+                            <div id="thumbnail">
+                                {%  if article.related_film.thumbnail %}
+                                    <img class="floatleft" src="/static/eiga/img/films/{{ article.related_film.thumbnail }}" alt="thumbnail" />
+                                {%  else %}
+                                    <img class="floatleft" src="/static/eiga/img/films/smallemptypic.gif" alt="thumbnail" />
+                                {% endif %}
+                                <ul>
+                                    {% if article.rating != 9 %}
+                                        <li><a href="/eiga/reviews/{{ article.id }}/"><b>{{ article.title }}</b></a></li>
+                                    {% else %}
+                                        <li><b>{{ article.title }}</b></li>
+                                    {% endif %}
+
+                                    <!--<li>{{ article.related_film.synopsis }}</li>-->
+                                    <li>Rating: <img src="/static/eiga/img/ratings/{{ article.rating }}Star.gif" alt="article.rating" /></li>
+                                    <li>Certificate: <img style="vertical-align:middle;" src="/static/eiga/img/certificates/{{ article.related_film.certificate_id }}.gif" alt="article.related_film.certificate" />
+                                    <li>Release date: {{ article.related_film.release_date|date:"SHORT_DATE_FORMAT" }}</li>
+                                </ul>
+                            </div>
+                    {% endif %}
+            {% endfor %}
+        </div>
+        <div id="preview">
+            <div class="titlebox">Coming Soon</div>
+            {% for article in article_list %}
+                {% if forloop.counter > 4 and forloop.counter < 9 %}
+                        <div id="thumbnail">
+                                {%  if article.related_film.thumbnail %}
+                                    <img class="floatleft" src="/static/eiga/img/films/{{ article.related_film.thumbnail }}" alt="thumbnail" />
+                                {%  else %}
+                                    <img class="floatleft" src="/static/eiga/img/films/smallemptypic.gif" alt="thumbnail" />
+                                {% endif %}
+                            <ul>
+                                {% if article.rating != 9 %}
+                                    <li><a href="/eiga/reviews/{{ article.id }}/"><b>{{ article.title }}</b></a></li>
+                                {% else %}
+                                    <li><b>{{ article.title }}</b></li>
+                                {% endif %}
+
+                                <!--<li>{{ article.related_film.synopsis }}</li>-->
+                                <li>Rating: <img src="/static/eiga/img/ratings/{{ article.rating }}Star.gif" alt="article.rating" /></li>
+                                <li>Certificate: <img style="vertical-align:middle;" src="/static/eiga/img/certificates/{{ article.related_film.certificate_id }}.gif" alt="article.related_film.certificate" />
+                                <li>Release date: {{ article.related_film.release_date|date:"SHORT_DATE_FORMAT" }}</li>
+                            </ul>
+                        </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div id="preview">
+             <div class="titlebox">Out To Buy</div>
+            {% for article in article_list %}
+                {% if forloop.counter > 8  %}
+                        <div id="thumbnail">
+                                {%  if article.related_film.thumbnail %}
+                                    <img class="floatleft" src="/static/eiga/img/films/{{ article.related_film.thumbnail }}" alt="thumbnail" />
+                                {%  else %}
+                                    <img class="floatleft" src="/static/eiga/img/films/smallemptypic.gif" alt="thumbnail" />
+                                {% endif %}
+                            <ul>
+                                {% if article.rating != 9 %}
+                                    <li><a href="/eiga/reviews/{{ article.id }}/"><b>{{ article.title }}</b></a></li>
+                                {% else %}
+                                    <li><b>{{ article.title }}</b></li>
+                                {% endif %}
+
+                                <!--<li>{{ article.related_film.synopsis }}</li>-->
+                                <li>Rating: <img src="/static/eiga/img/ratings/{{ article.rating }}Star.gif" alt="article.rating" /></li>
+                                <li>Certificate: <img style="vertical-align:middle;" src="/static/eiga/img/certificates/{{ article.related_film.certificate_id }}.gif" alt="article.related_film.certificate" />
+                                <li>Release date: {{ article.related_film.release_date|date:"SHORT_DATE_FORMAT" }}</li>
+                            </ul>
+                        </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

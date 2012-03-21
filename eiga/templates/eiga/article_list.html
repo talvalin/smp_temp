@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Latest reviews{% endblock %}
+
+{% block content %}
+
+{% if review_list %}
+    <table class="nested">
+    {% for article in review_list %}
+        <tr>
+            <td>
+                <img src="/static/eiga/img/films/{{ article.related_film.thumbnail.url }}" alt="thumbnail" />
+            </td>
+            <td>
+                {% if article.rating != 9 %}
+                    <a href="/eiga/outtobuy/{{ article.id }}/"><b>{{ article.title }}</b></a><br />
+                {% else %}
+                    <b>{{ article.title }}</b><br />
+                {% endif %}
+                {{ article.headline }} <br/>
+                DVD Rating: <img src="/static/eiga/img/ratings/{{ article.rating }}Star.gif" alt="article.rating" /> Certificate: <img src="/static/eiga/img/certificates/{{ article.related_film.certificate }}.gif" alt="article.related_film.certificate" /> Release date: {{ article.related_film.release_date|date:"SHORT_DATE_FORMAT" }}
+                <br/><br/>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No reviews are available.</p>
+{% endif %}
+
+{% endblock %}

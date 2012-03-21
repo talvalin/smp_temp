@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<link href="/static/eiga/css/smp.css" media="screen" rel="stylesheet" type="text/css">
+<link type="text/css" href="/static/eiga/css/cupertino/jquery-ui-1.8.16.custom.css" rel="Stylesheet" />
+<script type="text/javascript" src="/static/eiga/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/static/eiga/js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="/static/eiga/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/static/eiga/js/functions.js"></script>
+{% block scripts %}
+{% endblock %}
+<head>
+    <title>Share My Popcorn - {% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <img class="floatleft" src="/static/eiga/img/site/Logo-SMP.gif" />
+            {% block blurb %}
+            <p>Welcome to Share My Popcorn, a movie magazine dedicated to the biggest movies showing at your cinema or anticipated in the near future. Some like cultural movies, some like indie flicks, but we all enjoy good popcorn movies and here we celebrate the big budget, big stars and fun entertainment.</p>
+            {% endblock %}
+            {% block banner %}
+            {% endblock %}
+        </div>
+
+        {% load eiga_extras %}
+        <div id="navigation">
+            <ul>
+                <li><a href="/eiga/home/">Home</a> </li>
+                <li><a href="/eiga/incinemas/">In Cinemas</a></li>
+                <li><a href="/eiga/comingsoon/">Coming Soon</a></li>
+                <li><a href="/eiga/outtobuy/">Out To Buy</a></li>
+                <li><a href="/eiga/reviewarchive/">Reviews Archive</a></li>
+                <li><a href="/about/">About SMP</a></li>
+                <li><a href="/about/team">The Team</a></li>
+                <li><a href="/about/contact">Contact Us</a></li>
+
+                <!--<li><a href="/eiga/home/">Home</a> </li>
+                <li><a href="/eiga/incinemas/">In Cinemas</a></li>
+                <li><a href="/eiga/comingsoon/">Coming Soon</a></li>
+                <li><a href="/eiga/outtobuy/">Out To Buy</a></li>
+                <li><a href="/eiga/reviewarchive/">Reviews Archive</a></li>
+                <li><a href="/about/">About SMP</a></li>
+                <li><a href="/about/team">The Team</a></li>
+                <li><a href="/about/contact">Contact Us</a></li>-->
+            </ul>
+        </div>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="footer">
+            Design, Programming and Server Stuff by <a href="http://about.me/LalithVipulananthan">Lalith Vipulananthan</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</body>
+</html>

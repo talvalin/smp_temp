@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Latest interviews{% endblock %}
+
+{% block content %}
+<h1>Latest interviews</h1>
+
+{% if interview_list %}
+    <table>
+    {% for article in interview_list %}
+        <tr>
+            <td>
+                <a href="../interviews/{{ article.id }}/">{{ article.title }}</a><br />
+                {{ article.headline }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No interviews are available.</p>
+{% endif %}
+
+{% endblock %}

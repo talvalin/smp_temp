@@ -1,0 +1,16 @@
+copy eiga_film from '/Users/Lal/PycharmProjects/SMP data sanitised/eiga_film.csv' DELIMITERS ',' CSV HEADER;
+
+copy eiga_user from '/Users/Lal/PycharmProjects/SMP data sanitised/eiga_user.csv' DELIMITERS ',' CSV HEADER;
+
+copy eiga_article from '/Users/Lal/PycharmProjects/SMP data sanitised/eiga_article.csv' DELIMITERS ',' CSV HEADER;
+
+copy eiga_articledetail from '/Users/Lal/PycharmProjects/SMP data/ratings.csv' DELIMITERS ',' CSV HEADER;
+
+copy eiga_article_related_film from '/Users/Lal/PycharmProjects/SMP data/related_films.csv' DELIMITERS ',' CSV HEADER;
+
+copy synopsis_temp from '/Users/Lal/PycharmProjects/SMP data/synopsis.csv' DELIMITERS ',' CSV HEADER;
+
+UPDATE eiga_film 
+SET synopsis =
+    (SELECT synopsis FROM synopsis_temp
+     WHERE synopsis_temp.id = eiga_film.id);

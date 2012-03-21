@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} {{ review.title }} {% endblock %}
+
+{% block blurb %}
+<p>Give me a screen, a shameless budget and enough special effects to keep my ears ringing for a week. I want to laugh, to cry and to feel my pulse race with excitement. Give me popcorn, a drink I could drown in and enough sweets to feed an army.</p>
+{% endblock %}
+{% block content %}
+
+<!--<p>Sometimes you want escapism and movies are that way out, a doorway to a world of excitement, emotion and humour separate from our lives. Take a step closer to the door.</p>-->
+
+<table class="outer">
+    <tr>
+        <td><img src="/static/eiga/img/films/{{ review.related_film.still.url }}" alt="still" /></td>
+        <td>
+            <h3>{{ review.title }}</h3>
+            <b>Reviewer:</b> {{ review.author }}<br/>
+            <b>Rating:</b> <img src="/static/eiga/img/ratings/{{ review.rating }}Star.gif" alt="review.rating" /><br/>
+            <b>Cast:</b> {{ review.related_film.cast }}<br/>
+            <b>Director:</b> {{ review.related_film.director }}<br/>
+            <b>Duration:</b> {{ review.related_film.duration }} minutes<br/>
+            <b>Certificate:</b> <img src="/static/eiga/img/certificates/{{ review.related_film.certificate }}.gif" alt="review.related_film.certificate" /><br/>
+            <b>Release date:</b> {{ review.related_film.release_date|date:"SHORT_DATE_FORMAT" }}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <p> {{ review.body|safe }} </p>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

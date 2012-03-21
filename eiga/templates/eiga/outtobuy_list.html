@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Latest reviews{% endblock %}
+
+{% block content %}
+
+{% if review_list %}
+    {% for article in review_list %}
+       <div id="liststack" class="onhover">
+            {% if article.rating != 9 %}
+                <a href="/eiga/reviews/{{ article.id }}/"></a>
+            {% endif %}
+
+            {%  if article.related_film.thumbnail %}
+                <img class="floatleft" src="/static/eiga/img/films/{{ article.related_film.thumbnail }}" alt="thumbnail" />
+            {%  else %}
+                <img class="floatleft" src="/static/eiga/img/films/smallemptypic.gif" alt="thumbnail" />
+            {% endif %}
+            <ul>
+                {% if article.rating != 9 %}
+                    <li><a href="/eiga/reviews/{{ article.id }}/"><b>{{ article.title }}</b></a></li>
+                {% else %}
+                    <li><b>{{ article.title }}</b></li>
+                {% endif %}
+                <li>{{ article.related_film.synopsis }}</li>
+            </ul>
+            <ul id="summary">
+                <li>Rating: <img src="/static/eiga/img/ratings/{{ article.rating }}Star.gif" alt="article.rating" /></li>
+                <li>Certificate: <img style="vertical-align:middle;" src="/static/eiga/img/certificates/{{ article.related_film.certificate_id }}.gif" alt="article.related_film.certificate" />
+                <li>Original Release date: {{ article.related_film.release_date|date:"SHORT_DATE_FORMAT" }}</li>
+                <li>DVD Release date: {{ article.related_film.related_dvd.purchase_date|date:"SHORT_DATE_FORMAT" }}</li>
+            </ul>
+       </div>
+    {% endfor %}
+{% else %}
+    <p>No reviews are available.</p>
+{% endif %}
+{% endblock %}

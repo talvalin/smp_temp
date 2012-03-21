@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Latest news{% endblock %}
+
+{% block content %}
+<h1>Latest news</h1>
+
+{% if news_list %}
+    <table>
+    {% for article in news_list %}
+        <tr>
+            <td>
+                <a href="../news/{{ article.id }}/">{{ article.title }}</a><br />
+                {{ article.headline }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No news is available.</p>
+{% endif %}
+
+{% endblock %}

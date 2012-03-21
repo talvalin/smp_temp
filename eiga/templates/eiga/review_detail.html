@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %} {{ review.title }} {% endblock %}
+
+{% block blurb %}
+<p>Give me a screen, a shameless budget and enough special effects to keep my ears ringing for a week. I want to laugh, to cry and to feel my pulse race with excitement. Give me popcorn, a drink I could drown in and enough sweets to feed an army.</p>
+{% endblock %}
+{% block content %}
+
+<!--<p>Sometimes you want escapism and movies are that way out, a doorway to a world of excitement, emotion and humour separate from our lives. Take a step closer to the door.</p>-->
+
+    <div id="reviewheader">
+        {%  if review.related_film.thumbnail %}
+            <img class="floatleft" src="/static/eiga/img/films/{{ review.related_film.still }}" alt="still" width="520" height="200" />
+        {%  else %}
+            <img class="floatleft" src="/static/eiga/img/films/bigemptypic.gif" alt="thumbnail" width="520" height="200" />
+        {% endif %}
+        <p>
+            <h3>{{ review.title }}</h3>
+            <b>Reviewer:</b> {{ review.author }}<br/>
+            <b>Rating:</b> <img src="/static/eiga/img/ratings/{{ review.rating }}Star.gif" alt="review.rating" /><br/>
+            <b>Cast:</b> {{ review.related_film.film_cast }}<br/>
+            <b>Director:</b> {{ review.related_film.director }}<br/>
+            <b>Duration:</b> {{ review.related_film.duration }} minutes<br/>
+            <b>Certificate:</b> <img style="vertical-align:middle;" src="/static/eiga/img/certificates/{{ review.related_film.certificate_id }}.gif" alt="review.related_film.certificate" /><br/>
+            <b>Release date:</b> {{ review.related_film.release_date|date:"SHORT_DATE_FORMAT" }}
+        </p>
+    </div>
+    <div class="post">
+        {{ review.body|safe }}
+    </div>
+    {% if review.related_film.related_dvd %}
+    	<div id="dvd">
+	    	<p>
+				<h3>DVD Product Details</h3>
+				<b>Dub languages:</b> {{ review.related_film.related_dvd.dub_languages }} <br />
+				<b>Subtitle languages:</b> {{ review.related_film.related_dvd.subtitle_languages }} <br />
+				<b>Special features:</b>
+				{% for obj in review.related_film.related_dvd.special_features %}
+   					<ul>
+						<li>{{ obj }}</li>
+					</ul>
+				{% endfor %}
+			</p>	
+		</div>
+	{% endif %}
+{% endblock %}
+

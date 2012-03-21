@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Review archive{% endblock %}
+
+{% block content %}
+
+    <table id="archive">
+        <tr>
+	        <th></th>
+            <th><h3>Title</h3></th>
+            <th><h3>Synopsis</h3></th>
+            <th><h3>Genre</h3></th>
+            <th><h3>Reviewer</h3></th>
+            <th><h3>Rating</h3></th>
+        </tr>
+
+        {% for review in reviews.object_list %}
+        <tr {% cycle '' 'class="alt"' %}">
+	        <td><img src="/static/eiga/img/films/{{ review.related_film.thumbnail }}" alt="thumbnail" /></td>
+            <td><a class="nounderline" href="/eiga/reviews/{{ review.id }}/">{{ review.title }}</a></td>
+            <td>{{ review.headline|safe }}</td>
+            <td></td>
+            <td>{{ review.author }}</td>
+            <td><img src="/static/eiga/img/ratings/{{ review.rating }}Star.gif" alt="review.rating" /></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <div id="archive">
+        {% if reviews.paginator.num_pages != 1 %}
+            <span class="step-links">
+                {% if reviews.has_previous %}
+                    <a href="?page={{ reviews.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% for page_number in reviews.paginator.page_range %}
+                    {% ifequal page_number reviews.number %}
+                        <li class="currentpage">{{page_number}}</li>
+                    {% else %}
+                        <li class="archivepage"> <a href="?page={{page_number}}">{{page_number}}</a> </li>
+                    {% endifequal %}
+                {% endfor %}
+
+                {% if reviews.has_next %}
+                    <a href="?page={{ reviews.next_page_number }}">Next</a>
+                {% endif %}
+
+                <a href="../reviewarchive/viewall/">View All</a>
+            </span>
+        {% endif %}
+    </div>
+{% endblock %}

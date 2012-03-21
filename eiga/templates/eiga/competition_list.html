@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Latest competitions{% endblock %}
+
+{% block content %}
+<h1>Latest competitions</h1>
+
+{% if competition_list %}
+    <table>
+    {% for article in competition_list %}
+        <tr>
+            <td>
+                <a href="../competitions/{{ article.id }}/">{{ article.title }}</a><br />
+                {{ article.headline }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No competitions are available.</p>
+{% endif %}
+
+{% endblock %}
